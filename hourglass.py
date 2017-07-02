@@ -100,17 +100,14 @@ print len(arr)
 #Here loop runs (R-2)*(C-2) times considering
 # different top left cells of hour glasses.
     
-maxsum=0
+res=[]
 for i in range(len(arr)-2):
     for j in range(len(arr[0])-2):
         sum1= (arr[i][j]+arr[i][j+1]+arr[i][j+2]
                +arr[i+1][j+1]+
                arr[i+2][j]+arr[i+2][j+1]+arr[i+2][j+2])
-        print sum1
-        print "-------------------------------"
-        if sum1 > maxsum:
-               maxsum=sum1
+        res.append(sum1)
 
-print "sum is "+ str(maxsum)
+print "sum is "+ max(res)
 
 
