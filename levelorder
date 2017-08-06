@@ -1,0 +1,85 @@
+
+class Node:
+    def __init__(self,val):
+        self.data=val
+        self.left=None
+        self.right=None
+
+class Tree:
+    def __init__(self):
+        self.root=None
+    
+    def insert(self,data):
+        if self.root is None:
+            self.root=Node(data)
+        else:
+            self.insertintochild(self.root,data)
+    
+    def insertintochild(self,node,val):
+        if node.data > val:
+            if node.left is None:
+                node.left=Node(val)
+                #return node.left
+            else:
+                self.insertintochild(node.left, val)
+        else:
+            if node.right is None:
+                node.right=Node(val)
+                #return node.right
+            else:
+                self.insertintochild(node.right, val)
+    
+    
+    
+    def levelorder(self,node):
+        queue=[node]
+        print " "
+        while queue:
+            level=len(queue)
+            while level>0:
+                node=queue.pop()
+                print node.data,
+                if node.left:
+                    queue.insert(0, node.left)
+                if node.right:
+                    queue.insert(0,node.right)
+                level=level-1
+            print " "
+                
+    
+    #top view of the tree
+    def print_topview(self,node,level=0):
+        
+        # use order to keep track of which side you're on
+        if node:
+        # negative means on the left side, so keep printing the left
+            if level <= 0:
+                self.print_topview(node.left, -1)
+        # print the current node's data
+            print node.data,
+        #if positive means on the right side, so keep printing the right
+            if level >= 0:
+                self.print_topview(node.right, 1)
+            
+               
+    def display(self,node):
+        if node is None:
+            return
+        self.display(node.left)
+        print node.data
+        self.display(node.right)
+    
+
+t=Tree()
+t.insert(10)
+t.insert(5)
+t.insert(15)
+t.insert(8)
+t.insert(2)
+#t.display(t.root)
+#t.levelorder(t.root)
+print " "
+t.print_topview(t.root, 0)
+                
+            
+        
